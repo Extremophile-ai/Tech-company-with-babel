@@ -8,7 +8,11 @@ import {
     updateTechCompanyInfo, 
     deleteTechCompany
 } from './controllers';
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> 1544b181d8c553a62616cfcf5a2919279f2a7f41
 
 const app = express();
 app.use(bodyParser.json());

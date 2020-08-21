@@ -8,8 +8,13 @@ import {
   deleteQuery
 } from './query/index';
 
+<<<<<<< HEAD
      
              
+=======
+
+
+>>>>>>> 1544b181d8c553a62616cfcf5a2919279f2a7f41
 
 const getAllNgTechCompanies = (req, res) => {
     pool.query(

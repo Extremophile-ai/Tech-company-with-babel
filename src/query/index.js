@@ -1,4 +1,8 @@
+<<<<<<< HEAD
                      
+=======
+
+>>>>>>> 1544b181d8c553a62616cfcf5a2919279f2a7f41
 
 
 const getAll = 'SELECT * FROM ng_tech_companies ORDER BY id ASC';
