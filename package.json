@@ -1,12 +1,16 @@
 {
   "name": "tech-companies",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.x",
+    "npm": "6.x"
+  },
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel ./src --out-dir ./build",
-    "start": "babel-node ./build/server.js",
+    "start": "npm run build && babel-node ./build/server.js",
     "dev": "nodemon --exec babel-node ./build/server.js"
   },
   "repository": {
