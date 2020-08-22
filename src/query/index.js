@@ -1,4 +1,3 @@
-                     
 
 
 const getAll = 'SELECT * FROM ng_tech_companies ORDER BY id ASC';

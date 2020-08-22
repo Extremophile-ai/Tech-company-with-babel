@@ -8,8 +8,6 @@ import {
   deleteQuery
 } from './query/index';
 
-     
-             
 
 const getAllNgTechCompanies = (req, res) => {
     pool.query(
