@@ -5,22 +5,22 @@ This is an API for top Nigerian based Tech companies.
 
 Babel is used to transpile es6+ syntax to es5 so that the browser could recognise and render the web page
 
-Link to Heroku https://stark-reef-17608.herokuapp.com/
+Link to Heroku https://tech-company-babel-api.herokuapp.com/company/
 
 
 To get all Tech companies,
-GET https://stark-reef-17608.herokuapp.com/company
+GET https://tech-company-babel-api.herokuapp.com/company/company
 
 
 To get a single Tech company,
 
-GET https://stark-reef-17608.herokuapp.com/company/:id
+GET https://tech-company-babel-api.herokuapp.com/company/:id
 
 
 
 To create a Nigerian Tech company,
 
-POST https://stark-reef-17608.herokuapp.com/company/create
+POST https://tech-company-babel-api.herokuapp.com/company/create
 
 {
     "name": "name",
@@ -34,7 +34,7 @@ POST https://stark-reef-17608.herokuapp.com/company/create
 
 
 To Edit a company's info, 
-PUT https://stark-reef-17608.herokuapp.com/company/:id
+PUT https://tech-company-babel-api.herokuapp.com/company/:id
 
 {
     "name": "new name",
@@ -49,7 +49,7 @@ PUT https://stark-reef-17608.herokuapp.com/company/:id
 
 To delete a company,
 
-DELETE https://stark-reef-17608.herokuapp.com/company/:id
+DELETE https://tech-company-babel-api.herokuapp.com/company/:id
 
 
 
