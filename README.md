@@ -5,7 +5,7 @@ This is an API for top Nigerian based Tech companies.
 
 Babel is used to transpile es6+ syntax to es5 so that the browser could recognise and render the web page
 
-Link to Heroku https://tech-company-babel-api.herokuapp.com/company/
+Link to Heroku https://tech-company-babel-api.herokuapp.com/
 
 
 To get all Tech companies,
