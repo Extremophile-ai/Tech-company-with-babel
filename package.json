@@ -1,3 +1,4 @@
+
 {
   "name": "tech-companies",
   "version": "1.0.0",
@@ -8,6 +9,7 @@
   "description": "",
   "main": ".src/server.js",
   "scripts": {
+    "lint": "eslint ./src ./build --fix",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "npm rm -rf build && mkdir build",
     "build-babel": "babel -d ./build ./src -s",
@@ -30,6 +32,9 @@
     "@babel/core": "^7.11.1",
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.0",
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
     "nodemon": "^2.0.4"
   },
   "dependencies": {
