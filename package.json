@@ -1,4 +1,3 @@
-
 {
   "name": "tech-companies",
   "version": "1.0.0",
@@ -6,11 +5,13 @@
     "node": "12.x",
     "npm": "6.x"
   },
-  "description": "",
+  "description": "Nigerian Tech company api",
   "main": ".src/server.js",
   "scripts": {
     "lint": "eslint ./src ./build --fix",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "createtable": "babel-node ./src/db/createtable.js --env",
+    "test": "cross-env NODE_ENV=test npm run createtable && cross-env NODE_ENV=test nyc --reporter=text --reporter=html mocha --require @babel/register ./src/test --timeout 10000",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "clean": "npm rm -rf build && mkdir build",
     "build-babel": "babel -d ./build ./src -s",
     "build": "npm run clean && npm run build-babel",
@@ -32,16 +33,41 @@
     "@babel/core": "^7.11.1",
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "coveralls": "^3.1.0",
+    "cross-env": "^7.0.2",
     "eslint": "^7.7.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
+    "mocha": "^8.1.3",
     "nodemon": "^2.0.4"
   },
   "dependencies": {
+    "babel-plugin-istanbul": "^6.0.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "nyc": "^15.1.0",
     "pg": "^8.3.0"
+  },
+  "standard": {
+    "env": [
+      "mocha"
+    ]
+  },
+  "nyc": {
+    "require": [
+      "@babel/register",
+      "@babel/polyfill"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "sourceMap": false,
+    "instrument": false
   }
 }

@@ -19,8 +19,8 @@ app.use(
 );
 app.use(cors());
 
-app.get('/', (req, res) => {
-  res.send('Top Tech companies in Nigeria!');
+app.get('/home', (req, res) => {
+  res.json({ message: 'Top Tech companies in Nigeria!' });
 });
 
 // GET ALL NIGERIAN TECH COMPANIES IN THE DB
@@ -45,3 +45,4 @@ app.listen(process.env.PORT || 3003, () => {
 // app.listen(3003, ()=> {
 //     console.log('Server started!!')
 // });
+export default app;

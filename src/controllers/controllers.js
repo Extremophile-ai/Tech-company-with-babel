@@ -9,66 +9,144 @@ import {
 } from '../query/index';
 
 const getAllNgTechCompanies = (req, res) => {
-  pool.query(
-    getAll,
-    (err, results) => {
-      res.status(200).json(results.rows);
-    },
-  );
+  try {
+    pool.query(
+      getAll,
+      (err, results) => {
+        if (err) {
+          return res.status(400).json({
+            status: 'error',
+            data: err.stack,
+            message: 'Error. Could not get all companies'
+          });
+        } else {
+          return res.status(200).json({
+            status: 'success',
+            message: 'All companies gotten',
+            data: results.rows
+          });
+        }
+      }
+    );
+  } catch (error) {
+    return res.status(500).json({
+      status: 'error',
+      message: error.message
+    });
+  }
 };
 
 const getNgTechCompanyById = (req, res) => {
-  const id = parseInt(req.params.id);
-  pool.query(
-    getOne,
-    [id],
-    (err, results) => {
-      res.status(200).json(results.rows);
-      if (err) {
-        throw err;
-      }
-    },
-  );
+  try {
+    const id = parseInt(req.params.id);
+    pool.query(
+      getOne,
+      [id],
+      (err, results) => {
+        if (results.rows.length === 1) {
+          res.status(200).json({
+            status: 'success',
+            message: 'One company gotten',
+            data: results.rows
+          });
+        } else {
+          return res.status(404).json({
+            status: 'error',
+            message: `Oops! company with ${id} not found`,
+          });
+        }
+      },
+    );
+  } catch (error) {
+    return res.status(500).json({
+      status: 'error',
+      message: error.message
+    });
+  }
 };
 
 const createNewTechCompany = (req, res) => {
-  const {
-    name, location, name_of_ceo, year_founded, email, website,
-  } = req.body;
-  const Values = [name, location, name_of_ceo, year_founded, website, email];
-  pool.query(createNewText, Values, (err, results) => {
-    if (err) {
-      return err.stack;
-    } else {
-      res.status(200).json(results.rows[0]);
-    }
-  });
+  try {
+    const { name, location, name_of_ceo, year_founded, email, website } = req.body;
+    const Values = [name, location, name_of_ceo, year_founded, email, website];
+    pool.query(createNewText, Values, (err, results) => {
+      if (results) {
+        console.log(results);
+        return res.status(200).json({
+          status: 'success',
+          message: 'created company successfully',
+          data: results.rows,
+        });
+      } else {
+        return res.status(400).json({
+          status: 'error',
+          data: err.stack,
+          message: 'Oops! An error occurred while creating a company.'
+        });
+      }
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: 'error',
+      message: error.message
+    });
+  }
 };
 
 const updateTechCompanyInfo = (req, res) => {
-  const id = parseInt(req.params.id);
-  const {
-    name, location, name_of_ceo, year_founded, email, website,
-  } = req.body;
-  const Values = [name, location, name_of_ceo, year_founded, website, email];
-  pool.query(updateOne, Values,
-    (err, res) => {
-      if (err) {
-        throw err;
+  try {
+    const id = parseInt(req.params.id);
+    const { name, location, name_of_ceo, year_founded, email, website } = req.body;
+    const Value = [name, location, name_of_ceo, year_founded, email, website, id];
+    pool.query(updateOne, Value, (err, results) => {
+      if (results.rowCount === 1) {
+        console.log(results.rowCount);
+        console.log(results.rows);
+        return res.status(200).json({
+          status: 'success',
+          message: `Company Info modified with id = ${id}`,
+          data: results.rows
+        });
       } else {
-        res.status(200).send(`Company Info modified with ID: ${id}`);
+        return res.status(404).json({
+          status: 'error',
+          message: 'Error! Company not found',
+          data: err
+        });
       }
     });
+  } catch (error) {
+    return res.status(500).json({
+      status: 'error',
+      message: error.message
+    });
+  }
 };
 
 const deleteTechCompany = (req, res) => {
-  const id = parseInt(req.params.id);
-  pool.query(deleteQuery, [id], (error, results) => {
-    if (error) {
-      throw error;
-    }
-    res.status(200).send(`Company deleted with ID: ${id}`);
-  });
+  try {
+    const id = parseInt(req.params.id);
+    pool.query(deleteQuery, [id], (error, results) => {
+      if (error) {
+        throw res.status(400).json({
+          status: 'error',
+          message: 'Error! Company not found',
+          data: err.stack
+        });
+      } else {
+        return res.status(200).json({
+          status: 'success',
+          message: `Company deleted with ID: ${id}`,
+          data: results.rows
+        });
+      }
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: 'error',
+      message: error.message
+    });
+  }
 };
 
 export {
