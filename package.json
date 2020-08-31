@@ -9,8 +9,8 @@
   "main": ".src/server.js",
   "scripts": {
     "lint": "eslint ./src ./build --fix",
-    "createtable": "babel-node ./src/db/createtable.js --env",
-    "test": "cross-env NODE_ENV=test npm run createtable && cross-env NODE_ENV=test nyc --reporter=text --reporter=html mocha --require @babel/register ./src/test --timeout 10000",
+    "createtable": "babel-node ./build/db/createtable.js --env",
+    "test": "cross-env NODE_ENV=test npm run createtable && cross-env NODE_ENV=test nyc --reporter=text --reporter=html mocha --require @babel/register ./build/test --timeout 10000",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "clean": "npm rm -rf build && mkdir build",
     "build-babel": "babel -d ./build ./src -s",

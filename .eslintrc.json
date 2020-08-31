@@ -29,6 +29,14 @@
         "next-line-semi":"off",
         "no-else-return":"off",
         "camelcase":"off",
-        "quotes":"off"
+        "quotes":"off",
+        "no-void":"off",
+        "quote-props":"off",
+        "use-strict":"off",
+        "no-use-before-define":"off",
+        "no-underscore-dangle":"off",
+        "vars-on-top":"off",
+        "no-var":"off",
+        "no-multi-assign":"off"
     }
 }
