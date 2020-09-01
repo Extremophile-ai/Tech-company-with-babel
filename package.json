@@ -10,9 +10,9 @@
   "scripts": {
     "lint": "eslint ./src ./build --fix",
     "createtable": "babel-node ./build/db/createtable.js --env",
-    "test": "cross-env NODE_ENV=test npm run createtable && cross-env NODE_ENV=test nyc --reporter=text --reporter=html mocha --require @babel/register ./build/test --timeout 10000",
+    "test": "cross-env NODE_ENV=test --reporter=html --reporter=text mocha --require @babel/register ./build/test --timeout 10000 --recursive --exit || true",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "clean": "npm rm -rf build && mkdir build",
+    "clean": "npm rm -rf build && npm run build-babel",
     "build-babel": "babel -d ./build ./src -s",
     "build": "npm run clean && npm run build-babel",
     "start": "npm run build && node ./build/server.js",
@@ -30,9 +30,12 @@
   "homepage": "https://github.com/Extremophile-ai/tech-companies-with-babel#readme",
   "devDependencies": {
     "@babel/cli": "^7.10.5",
+    "babel-plugin-istanbul": "^6.0.0",
     "@babel/core": "^7.11.1",
     "@babel/node": "^7.10.5",
+    "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.11.0",
+    "@babel/runtime": "^7.11.2",
     "babel-register": "^6.26.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
@@ -45,7 +48,6 @@
     "nodemon": "^2.0.4"
   },
   "dependencies": {
-    "babel-plugin-istanbul": "^6.0.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

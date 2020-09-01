@@ -1,4 +1,9 @@
 
+[![Coverage Status](https://coveralls.io/repos/github/Extremophile-ai/Tech-company-with-babel/badge.svg?branch=develop)](https://coveralls.io/github/Extremophile-ai/Tech-company-with-babel?branch=develop)
+
+
+
+
 This is an API for top Nigerian based Tech companies.
 
 
