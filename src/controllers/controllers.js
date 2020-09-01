@@ -71,7 +71,7 @@ const createNewTechCompany = (req, res) => {
     const Values = [name, location, name_of_ceo, year_founded, email, website];
     pool.query(createNewText, Values, (err, results) => {
       if (results) {
-        console.log(results);
+        // console.log(results);
         return res.status(200).json({
           status: 'success',
           message: 'created company successfully',
@@ -100,8 +100,8 @@ const updateTechCompanyInfo = (req, res) => {
     const Value = [name, location, name_of_ceo, year_founded, email, website, id];
     pool.query(updateOne, Value, (err, results) => {
       if (results.rowCount === 1) {
-        console.log(results.rowCount);
-        console.log(results.rows);
+        // console.log(results.rowCount);
+        // console.log(results.rows);
         return res.status(200).json({
           status: 'success',
           message: `Company Info modified with id = ${id}`,
